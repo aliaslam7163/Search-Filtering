@@ -9,7 +9,7 @@
       <select #filterSelector2 
               [disabled]="field.disabled" 
               (change)="setModelDynamic(field,filterSelector2.value)" 
-              [(value)]="field.outputModel">
+              [(value)]="field.label">
 
         <option *ngFor="let opt of availableSearch; let i = index"  
                 [selected]="opt.label">{{opt.label}}</option>
@@ -23,8 +23,16 @@
               [disabled]="field.disabled"
               [(value)]="field.outputModel">
               
-          <option *ngFor="let opts of opt.options;let i = index"
-                  [selected]="opts[0]">{{opts}}</option>
+          <option *ngFor="let opts of field.options;let i = index"
+                  [selected]="opts[i]">{{opts}}</option>
+      </select>
+
+      <select *ngIf="field.type=='MULTI'"
+              [disabled]="field.disabled"
+              [(value)]="field.outputModel" multiple>
+              
+        <option *ngFor="let opts of field.options;let i = index"
+                [selected]="opts[i]">{{opts}}</option>
       </select>
 
     </div>
