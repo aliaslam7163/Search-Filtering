@@ -32,7 +32,8 @@ export class SearchComponent implements OnInit {
       name:this.availableSearch[0].name,
       code:this.availableSearch[0].searchField.code,
       type:this.availableSearch[0].searchField.type,
-      disabled:false
+      disabled:false,
+      outputModel:[]
     }
     if(this.availableSearch[0].options){
       if(this.availableSearch[0].options.length > 0)

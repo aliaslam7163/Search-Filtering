@@ -6,4 +6,5 @@ export interface Filter{
   type:String;
   disabled:boolean;
   options:any[];
+  selected;
 }

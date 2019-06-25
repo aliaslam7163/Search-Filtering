@@ -9,7 +9,7 @@
       <select #filterSelector2 
               [disabled]="field.disabled" 
               (change)="setModelDynamic(field,filterSelector2.value)" 
-              [(value)]="field.name">
+              [(value)]="field.selected">
 
         <option *ngFor="let opt of availableSearch; let i = index"  
                 [selected]="field.name">{{opt.label}}</option>
@@ -17,7 +17,8 @@
       </select>
 
       <input *ngIf="field.type == 'TEXT'" 
-             [disabled]="field.disabled">
+             [disabled]="field.disabled"
+             [(ngModel)]="field.outputModel">
 
       <select *ngIf="field.type=='SELECT'"
               [disabled]="field.disabled"
@@ -29,6 +30,7 @@
 
       <select *ngIf="field.type=='MULTI'"
               [disabled]="field.disabled"
+              [(value)]="field.outputModel" 
               [(value)]="field.outputModel" multiple>
               
         <option *ngFor="let opts of field.options;let i = index"
