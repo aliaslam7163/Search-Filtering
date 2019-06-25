@@ -9,7 +9,7 @@
       <select #filterSelector2 
               [disabled]="field.disabled" 
               (change)="setModelDynamic(field,filterSelector2.value)" 
-              [(value)]="field.label">
+              [(value)]="field.outputModel">
 
         <option *ngFor="let opt of availableSearch; let i = index"  
                 [selected]="field.label">{{opt.label}}</option>

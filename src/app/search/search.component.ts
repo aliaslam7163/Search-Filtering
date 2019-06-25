@@ -11,11 +11,11 @@ import { Filter } from '../models/filter.model';
 export class SearchComponent implements OnInit {
   //@ViewChildren() filterSelector2: QueryList;
   availableSearch:any[] = [
-    {outputModel:'',label:'Name',code:'name',searchField:{type:'TEXT',label:'Name',code:'name'}},
-    {outputModel:'',label:'Carrier Code',code:'code',searchField:{type:'TEXT',label:'Carrier Code',code:'code'}},
-    {outputModel:'',label:'Defined By',code:'definedby',searchField:{type:'TEXT',label:'Defined By',code:'definedby'}},
-    {outputModel:'',label:'Status',code:'status',options:['active','inactive'],searchField:{type:'SELECT',label:'Status',code:'status'}},
-    {outputModel:'',label:'Carriers',code:'carrier',options:['UPS','DHL','Fedex'],searchField:{type:'MULTI',label:'Carriers',code:'carrier'}}
+    {outputModel:'',label:'Name',searchField:{type:'TEXT',label:'Name',code:'name'}},
+    {outputModel:'',label:'Carrier Code',searchField:{type:'TEXT',label:'Carrier Code',code:'code'}},
+    {outputModel:'',label:'Defined By',searchField:{type:'TEXT',label:'Defined By',code:'definedby'}},
+    {outputModel:'',label:'Status',options:['active','inactive'],searchField:{type:'SELECT',label:'Status',code:'status'}},
+    {outputModel:'',label:'Carriers',options:['UPS','DHL','Fedex'],searchField:{type:'MULTI',label:'Carriers',code:'carrier'}}
   ];
   searchFields = ['Name','Carrier','Status','DefinedBy'];
   availableFields:any[] = ['Name','Carrier','Status','DefinedBy'];
@@ -39,13 +39,14 @@ export class SearchComponent implements OnInit {
   }
 
   addFieldsDynamic(filterUse,value){
+    console.log(this.dynamicInUse[this.dynamicInUse.length-1]);
     if(this.dynamicInUse.length < this.availableFields.length){
         this.availableSearch = this.availableSearch.filter((element) => {
         return this.dynamicInUse.filter((filtersUsed) => {
           return filtersUsed.label == element.label;
         }).length == 0;
       });
-      console.log(this.availableSearch.map((obj) => {return obj}));
+      console.log(this.availableSearch);
 
       //console.log(temp);
       this.dynamicInUse.forEach((element) => element.disabled=true);
@@ -87,7 +88,7 @@ export class SearchComponent implements OnInit {
       disabled:false
     }
     })[0];
-    //console.log(this.dynamicInUse[this.dynamicInUse.length - 1])
+    console.log(this.dynamicInUse[this.dynamicInUse.length - 1])
   }
 
   grabFilterModel(search:string){}
