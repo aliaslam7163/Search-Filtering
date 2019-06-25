@@ -1,9 +1,26 @@
+  
+  
+  
+  
   <ng-container *ngFor="let field of dynamicInUse; let i = index;">
+
     <div>
-      <select #filterSelector2 [disabled]="field.disabled" (change)="setModelDynamic(field,filterSelector2.value)" [(value)]="field.label">
-        <option *ngFor="let opt of availableSearch; let i = index"  [selected]="field.label">{{opt.label}}</option>
+
+      <select #filterSelector2 
+              [disabled]="field.disabled" 
+              (change)="setModelDynamic(field,filterSelector2.value)" 
+              [(value)]="field.label">
+
+        <option *ngFor="let opt of availableSearch; let i = index"  
+                [selected]="field.label">{{opt.label}}</option>
+
       </select>
-      <input *ngIf="field.searchField.type == 'text'" [disabled]="field.disabled" >
+
+      <input *ngIf="field.searchField.type == 'text'" 
+             [disabled]="field.disabled" >
+
     </div>
+
   </ng-container>
+
   <button (click)="addFieldsDynamic()">Add</button>

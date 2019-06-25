@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import { of } from 'rxjs';
+import { Filter } from '../models/filter.model';
 
 @Component({
   selector: 'app-search',
@@ -18,26 +19,17 @@ export class SearchComponent implements OnInit {
   searchFields = ['Name','Carrier','Status','DefinedBy'];
   availableFields:any[] = ['Name','Carrier','Status','DefinedBy'];
   filterSelected;
-  inUse= new Array();
   dynamicInUse = new Array();
-  dynamicObj = {
-    outputModel:'Name',
-    label:'Name',
-    code:'name',
-    searchField:{
-      type:'text',
-      label:'Name',
-      code:'name'
-      },
-    availableFilter:['Name','Carrier','Status','DefinedBy'],
-    disabled:false
-  };
 
   constructor(private fb:FormBuilder) {}
 
   ngOnInit() {
+    let filter:Filter = {
+
+    }
     this.dynamicInUse.push(this.availableSearch[0]);
   }
+
   addFieldsDynamic(filterUse,value){
     if(this.dynamicInUse.length < this.availableFields.length){
         let temp = this.availableSearch.filter((element) => {
@@ -46,21 +38,10 @@ export class SearchComponent implements OnInit {
         }).length == 0;
       });
       console.log(temp.map((obj) => {return obj.label}));
-      let newObj = {
-          outputModel:temp[0].label,
-          label:'Name',
-          code:'name',
-          searchField:{
-            type:'text',
-            label:'Name',
-            code:'name'
-            },
-          availableFilter:temp.map((obj) => {return obj.label}),
-          disabled:false
-  };
+
       //console.log(temp);
       this.dynamicInUse.forEach((element) => element.disabled=true);
-      this.dynamicInUse.push(newObj);
+      //this.dynamicInUse.push(newObj);
     }
   }
 
