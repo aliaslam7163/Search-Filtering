@@ -16,8 +16,16 @@
 
       </select>
 
-      <input *ngIf="field.type == 'text'" 
-             [disabled]="field.disabled" >
+      <input *ngIf="field.type == 'TEXT'" 
+             [disabled]="field.disabled">
+
+      <select *ngIf="field.type=='SELECT'"
+              [disabled]="field.disabled"
+              [(value)]="field.outputModel">
+              
+          <option *ngFor="let opts of opt.options;let i = index"
+                  [selected]="opts[0]">{{opts}}</option>
+      </select>
 
     </div>
 
