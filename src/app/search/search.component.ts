@@ -24,10 +24,13 @@ export class SearchComponent implements OnInit {
   constructor(private fb:FormBuilder) {}
 
   ngOnInit() {
-    let filter:Filter = {
-
+    let filter:Partial<Filter> = {
+      label:this.availableSearch[0].label,
+      code:this.availableSearch[0].code,
+      type:this.availableSearch[0].searchField.type,
+      disabled:false
     }
-    this.dynamicInUse.push(this.availableSearch[0]);
+    this.dynamicInUse.push(filter);
   }
 
   addFieldsDynamic(filterUse,value){
