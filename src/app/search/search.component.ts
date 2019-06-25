@@ -11,7 +11,7 @@ import { Filter } from '../models/filter.model';
 export class SearchComponent implements OnInit {
   //@ViewChildren() filterSelector2: QueryList;
   availableSearch:any[] = [
-    {outputModel:'',label:'Name',code:'name',searchField:{type:'text',label:'Name',code:'name'}},
+    {outputModel:'',label:'Name',code:'name',searchField:{type:'TEXT',label:'Name',code:'name'}},
     {outputModel:'',label:'Carrier Code',code:'code',searchField:{type:'TEXT',label:'Carrier Code',code:'code'}},
     {outputModel:'',label:'Defined By',code:'definedby',searchField:{type:'TEXT',label:'Defined By',code:'definedby'}},
     {outputModel:'',label:'Status',code:'status',options:['active','inactive'],searchField:{type:'SELECT',label:'Status',code:'status'}},
@@ -31,8 +31,10 @@ export class SearchComponent implements OnInit {
       label:this.availableSearch[0].label,
       code:this.availableSearch[0].code,
       type:this.availableSearch[0].searchField.type,
+      options:this.availableSearch[0].options ? this.availableSearch[0].options : [],
       disabled:false
     }
+    console.log(filter);
     this.dynamicInUse.push(filter);
   }
 
@@ -43,7 +45,7 @@ export class SearchComponent implements OnInit {
           return filtersUsed.label == element.label;
         }).length == 0;
       });
-      console.log(this.availableSearch.map((obj) => {return obj}));
+      //console.log(this.availableSearch.map((obj) => {return obj}));
 
       //console.log(temp);
       this.dynamicInUse.forEach((element) => element.disabled=true);
@@ -51,6 +53,7 @@ export class SearchComponent implements OnInit {
       label:this.availableSearch[0].label,
       code:this.availableSearch[0].code,
       type:this.availableSearch[0].searchField.type,
+      options:this.availableSearch[0].options ? this.availableSearch[0].options : [],
       disabled:true
     }
     this.dynamicInUse.push(filter);
@@ -62,7 +65,24 @@ export class SearchComponent implements OnInit {
     //console.log(filterInUse);
     //console.log(value);
     //this.dynamicInUse[this.inUse.length-1].outputModel = value;
-    console.log(this.dynamicInUse);
+    
+    //console.log(filterInUse);
+    console.log(value);
+    this.dynamicInUse[this.dynamicInUse.length - 1] = this.availableSearch.filter((element) => {
+      
+      return element.label == value;
+    }).map((obj) => {
+      console.log(obj);
+      let filter:Partial<Filter>
+      return filter = {
+      label:obj.label,
+      code:obj.code,
+      type:obj.searchField.type,
+      options:obj.options ? obj.options : [],
+      disabled:true
+    }
+    })[0];
+    console.log(this.dynamicInUse[this.dynamicInUse.length - 1])
   }
 
   grabFilterModel(search:string){}

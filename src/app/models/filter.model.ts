@@ -4,4 +4,5 @@ export interface Filter{
   code: String;
   type:String;
   disabled:boolean;
+  options:any[];
 }
