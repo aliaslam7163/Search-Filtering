@@ -11,11 +11,11 @@ import { Filter } from '../models/filter.model';
 export class SearchComponent implements OnInit {
   //@ViewChildren() filterSelector2: QueryList;
   availableSearch:any[] = [
-    {outputModel:'',label:'Name',searchField:{type:'TEXT',label:'Name',code:'name'}},
-    {outputModel:'',label:'Carrier Code',searchField:{type:'TEXT',label:'Carrier Code',code:'code'}},
-    {outputModel:'',label:'Defined By',searchField:{type:'TEXT',label:'Defined By',code:'definedby'}},
-    {outputModel:'',label:'Status',options:['active','inactive'],searchField:{type:'SELECT',label:'Status',code:'status'}},
-    {outputModel:'',label:'Carriers',options:['UPS','DHL','Fedex'],searchField:{type:'MULTI',label:'Carriers',code:'carrier'}}
+    {outputModel:'',label:'Name',name:'name',searchField:{type:'TEXT',label:'Name',code:'name'}},
+    {outputModel:'',label:'Carrier Code',name:'code',searchField:{type:'TEXT',label:'Carrier Code',code:'code'}},
+    {outputModel:'',label:'Defined By',name:'definedby',searchField:{type:'TEXT',label:'Defined By',code:'definedby'}},
+    {outputModel:'',label:'Status',name:'status',options:['active','inactive'],searchField:{type:'SELECT',label:'Status',code:'status'}},
+    {outputModel:'',label:'Carriers',name:'carriers',options:['UPS','DHL','Fedex'],searchField:{type:'MULTI',label:'Carriers',code:'carrier'}}
   ];
   searchFields = ['Name','Carrier','Status','DefinedBy'];
   availableFields:any[] = ['Name','Carrier','Status','DefinedBy'];
@@ -29,12 +29,17 @@ export class SearchComponent implements OnInit {
     //Grabbing filter model from server
     let filter:Partial<Filter> = {
       label:this.availableSearch[0].label,
-      code:this.availableSearch[0].code,
+      name:this.availableSearch[0].name,
+      code:this.availableSearch[0].searchField.code,
       type:this.availableSearch[0].searchField.type,
-      options:this.availableSearch[0].options ? this.availableSearch[0].options : [],
       disabled:false
     }
-    //console.log(filter);
+    if(this.availableSearch[0].options){
+      if(this.availableSearch[0].options.length > 0)
+        filter['option'] = this.availableSearch[0].options;
+      else
+        filter['option'] = [];
+    }
     this.dynamicInUse.push(filter);
   }
 
@@ -52,9 +57,9 @@ export class SearchComponent implements OnInit {
       this.dynamicInUse.forEach((element) => element.disabled=true);
       let filter:Partial<Filter> = {
       label:this.availableSearch[0].label,
-      code:this.availableSearch[0].code,
+      name:this.availableSearch[0].name,
+      code:this.availableSearch[0].searchField.code,
       type:this.availableSearch[0].searchField.type,
-      //options:this.availableSearch[0].options ? this.availableSearch[0].options : [],
       disabled:false
     }
     if(this.availableSearch[0].options){
@@ -82,7 +87,8 @@ export class SearchComponent implements OnInit {
       let filter:Partial<Filter>
       return filter = {
       label:obj.label,
-      code:obj.code,
+      name:this.availableSearch[0].name,
+      code:obj.searchField.code,
       type:obj.searchField.type,
       options:obj.options ? obj.options : [],
       disabled:false
