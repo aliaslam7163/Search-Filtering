@@ -1,0 +1,9 @@
+  <ng-container *ngFor="let field of dynamicInUse; let i = index;">
+    <div>
+      <select #filterSelector2 [disabled]="field.disabled" (change)="setModelDynamic(field,filterSelector2.value)" [(value)]="field.label">
+        <option *ngFor="let opt of field.availableFilter; let i = index"  [selected]="field.label">{{opt}}</option>
+      </select>
+      <input *ngIf="field.searchField.type == 'text'" [disabled]="field.disabled" >
+    </div>
+  </ng-container>
+  <button (click)="addFieldsDynamic()">Add</button>
