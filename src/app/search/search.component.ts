@@ -110,4 +110,12 @@ export class SearchComponent implements OnInit {
   getOutputModel(name:any,value:any=''){
     //let obj = {name:value};
   }
+
+  removeSelection(index:number){
+    if(this.dynamicInUse.length > 1){
+       this.dynamicInUse.splice(index);
+       this.dynamicInUse[this.dynamicInUse.length-1].disabled = !this.dynamicInUse[this.dynamicInUse.length-1].disabled
+    }
+     
+  }
 }
