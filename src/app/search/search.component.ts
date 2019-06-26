@@ -64,7 +64,8 @@ export class SearchComponent implements OnInit {
       type:this.availableSearch[0].type,
       disabled:false,
       outputModel:this.availableSearch[0].label,
-      availableSelecitons:this.availableSearch.map((ele) => {return ele.label})
+      availableSelecitons:this.availableSearch.map((ele) => {return ele.label}),
+      setValue:''
       //outputModel:{name:this.availableSearch[0].label}
       }
       if(this.availableSearch[0].inputModel){

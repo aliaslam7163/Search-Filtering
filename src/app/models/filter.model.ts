@@ -6,6 +6,6 @@ export interface Filter{
   type:String;
   disabled:boolean;
   inputModel:any[];
-  selected;
+  setValue:any;
   availableSelecitons:any[];
 }

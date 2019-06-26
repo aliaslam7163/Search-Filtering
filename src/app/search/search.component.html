@@ -12,13 +12,13 @@
               [(value)]="field.outputModel">
 
         <option *ngFor="let opt of field.availableSelecitons; let i = index"  
-          [selected]="field.outputModel">{{opt}}</option>
+         >{{opt}}</option>
 
       </select>
 
       <input *ngIf="field.type == 'TEXT'" 
              [disabled]="field.disabled"
-             >
+             [(ngModel)]="field.selected">
 
       <select *ngIf="field.type=='SELECT'"
               [disabled]="field.disabled"
