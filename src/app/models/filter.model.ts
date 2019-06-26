@@ -5,6 +5,7 @@ export interface Filter{
   code: String;
   type:String;
   disabled:boolean;
-  options:any[];
+  inputModel:any[];
   selected;
+  availableSelecitons:any[];
 }

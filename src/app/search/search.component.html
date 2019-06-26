@@ -1,7 +1,7 @@
   
   
   
-  
+<div   [hidden]="enableGridFiltering">
   <ng-container *ngFor="let field of dynamicInUse; let i = index;">
 
     <div>
@@ -41,3 +41,4 @@
   </ng-container>
 
   <button (click)="addFieldsDynamic()">Add</button>
+</div>
