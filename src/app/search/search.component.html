@@ -22,7 +22,7 @@
 
       <select *ngIf="field.type=='SELECT'"
               [disabled]="field.disabled"
-              [(value)]="field.outputModel">
+              [(ngModel)]="field.setValue">
               
           <option *ngFor="let opts of field.inputModel;let i = index"
                   >{{opts}}</option>
@@ -30,6 +30,7 @@
 
       <select *ngIf="field.type=='MULTI'"
               [disabled]="field.disabled"
+              [(ngModel)]="field.setValue"
                multiple>
               
         <option *ngFor="let opts of field.inputModel;let i = index"

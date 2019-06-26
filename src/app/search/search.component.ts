@@ -33,8 +33,8 @@ export class SearchComponent implements OnInit {
       type:this.availableSearch[0].type,
       disabled:false,
       outputModel:this.availableSearch[0].label,
-      availableSelecitons:this.availableSearch.map((ele) => {return ele.label})
-      //outputModel:this.getOutputModel(this.availableSearch[0].name)
+      availableSelecitons:this.availableSearch.map((ele) => {return ele.label}),
+      setValue:''
     }
     if(this.availableSearch[0].inputModel){
       if(this.availableSearch[0].inputModel.length > 0)
@@ -98,8 +98,8 @@ export class SearchComponent implements OnInit {
       inputModel:obj.inputModel ? obj.inputModel : [],
       disabled:false,
       outputModel:obj.label,
-      availableSelecitons:this.availableSearch.map((ele) => {return ele.label})
-      //outputModel:{name:value}
+      availableSelecitons:this.availableSearch.map((ele) => {return ele.label}),
+      setValue:''
     }
     })[0];
     console.log(this.dynamicInUse[this.dynamicInUse.length - 1])
