@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
       type:this.availableSearch[0].type,
       disabled:false,
       outputModel:this.availableSearch[0].label,
-      availableSelecitons:this.availableSearch.map((ele) => {return ele.label}),
+      availableSelections:this.availableSearch.map((ele) => {return ele.label}),
       setValue:''
     }
     if(this.availableSearch[0].inputModel){
@@ -62,7 +62,7 @@ export class SearchComponent implements OnInit {
       type:this.availableSearch[0].type,
       disabled:false,
       outputModel:this.availableSearch[0].label,
-      availableSelecitons:this.availableSearch.map((ele) => {return ele.label}),
+      availableSelections:this.availableSearch.map((ele) => {return ele.label}),
       setValue:''
       //outputModel:{name:this.availableSearch[0].label}
       }
@@ -89,7 +89,7 @@ export class SearchComponent implements OnInit {
       inputModel:obj.inputModel ? obj.inputModel : [],
       disabled:false,
       outputModel:obj.label,
-      availableSelecitons:this.availableSearch.map((ele) => {return ele.label}),
+      availableSelections:this.availableSearch.map((ele) => {return ele.label}),
       setValue:''
     }
     })[0];
@@ -102,11 +102,16 @@ export class SearchComponent implements OnInit {
   }
 
   removeSelection(index:number,selection:any){
-    //console.log(index,selection);
+   // console.log(this.availableSearch);
     let position = this.dynamicInUse.indexOf(selection);
     if(position > -1){
-      let removed = this.dynamicInUse.splice(position,1);
-      console.log(removed)
+      var removed = this.dynamicInUse.splice(position,1);
+      //console.log("removed item is" ,removed[0]);
+      var _filter = this.searchFields.filter((element) => {
+        //console.log(element);
+        return element.label == removed[0].label});
+      this.availableSearch.push(_filter[0]);
+      console.log)this.availableSearch);
     }
     // let _filter = this.availableSearch.filter((element) => {
     //   return element.label == selection.label;

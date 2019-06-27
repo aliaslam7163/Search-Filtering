@@ -6,5 +6,5 @@ export interface Filter{
   disabled:boolean;
   inputModel:any[];
   setValue:any;
-  availableSelecitons:any[];
+  availableSelections:any[];
 }
