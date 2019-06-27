@@ -5,7 +5,7 @@
   <ng-container *ngFor="let field of dynamicInUse; let i = index;">
 
     <div>
-      <button [disabled]="field.disabled"  (click)="removeSelection(i)"><span>Remove</span></button>
+      <button [disabled]="dynamicInUse.length <= 1"  (click)="removeSelection(i,field)"><span>Remove</span></button>
       <select #filterSelector2 
               [disabled]="field.disabled" 
               (change)="setModelDynamic(field,filterSelector2.value)" 
@@ -41,5 +41,5 @@
 
   </ng-container>
 
-  <button (click)="addFieldsDynamic()">Add</button>
+  <button (click)="addFieldsDynamic()" [disabled]="availableSearch.length == 1 ">Add</button>
 </div>

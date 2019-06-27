@@ -46,17 +46,15 @@ export class SearchComponent implements OnInit {
   }
 
   addFieldsDynamic(filterUse,value){
-
-    //console.log(this.dynamicInUse[this.dynamicInUse.length-1]);
-    if(this.dynamicInUse.length <= this.availableFields.length){
+    if(this.availableFields.length > 0){
+      console.log(this.dynamicInUse.length,this.availableSearch.length);
         this.availableSearch = this.availableSearch.filter((element) => {
         return this.dynamicInUse.filter((filtersUsed) => {
           return filtersUsed.label == element.label;
         }).length == 0;
       });
-      //console.log(this.availableSearch);
-      console.log(this.dynamicInUse);
-      
+      console.log(this.availableSearch);
+      //console.log(this.dynamicInUse);
       this.dynamicInUse.forEach((element) => element.disabled=true);
       let filter:Partial<Filter> = {
       label:this.availableSearch[0].label,
@@ -80,16 +78,9 @@ export class SearchComponent implements OnInit {
 
   
   setModelDynamic(filterInUse,value){
-    //console.log(filterInUse);
-    //console.log(value);
-    //this.dynamicInUse[this.inUse.length-1].outputModel = value;
-    
-    //console.log(filterInUse);
-    //console.log(value);
     this.dynamicInUse[this.dynamicInUse.length - 1] = this.availableSearch.filter((element) => {
       return element.label == value;
     }).map((obj) => {
-      //console.log(obj);
       let filter:Partial<Filter>
       return filter = {
       label:obj.label,
@@ -102,7 +93,6 @@ export class SearchComponent implements OnInit {
       setValue:''
     }
     })[0];
-    console.log(this.dynamicInUse[this.dynamicInUse.length - 1])
   }
 
   grabFilterModel(search:string){}
@@ -111,11 +101,21 @@ export class SearchComponent implements OnInit {
     //let obj = {name:value};
   }
 
-  removeSelection(index:number){
-    if(this.dynamicInUse.length > 1){
-       this.dynamicInUse.splice(index);
-       this.dynamicInUse[this.dynamicInUse.length-1].disabled = !this.dynamicInUse[this.dynamicInUse.length-1].disabled
+  removeSelection(index:number,selection:any){
+    //console.log(index,selection);
+    let position = this.dynamicInUse.indexOf(selection);
+    if(position > -1){
+      let removed = this.dynamicInUse.splice(position,1);
+      console.log(removed)
     }
+    // let _filter = this.availableSearch.filter((element) => {
+    //   return element.label == selection.label;
+    //   //console.log(_filter);
+    //   this.availableSearch.push(_filter[0]);
+    //   this.dynamicInUse.splice(index,1);
+    //   this.dynamicInUse[this.dynamicInUse.length-1].disabled = !this.dynamicInUse[this.dynamicInUse.length-1].disabled
+    // });
+    // console.log(this.availableSearch)
      
   }
 }
