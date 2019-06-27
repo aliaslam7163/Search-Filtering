@@ -101,6 +101,15 @@ export class SearchComponent implements OnInit {
     //let obj = {name:value};
   }
 
+  getSearchModel(){
+    console.log(this.dynamicInUse);
+    let search = {};
+    this.dynamicInUse.forEach((filter) => {
+      search[`${filter.name}`] = filter.setValue;
+    })
+    console.log(search);
+  }
+
   removeSelection(index:number,selection:any){
     let position = this.dynamicInUse.indexOf(selection);
     if(position > -1){

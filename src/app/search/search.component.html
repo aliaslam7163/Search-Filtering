@@ -18,7 +18,7 @@
 
       <input *ngIf="field.type == 'TEXT'" 
              [disabled]="field.disabled"
-             [(ngModel)]="field.selected">
+             [(ngModel)]="field.setValue">
 
       <select *ngIf="field.type=='SELECT'"
               [disabled]="field.disabled"
@@ -34,7 +34,7 @@
                multiple>
               
         <option *ngFor="let opts of field.inputModel;let i = index"
-                [selected]="opts[0]" [ngValue]="field.outputModel">{{opts}}</option>
+                [selected]="opts[0]" [ngValue]="opts">{{opts}}</option>
       </select>
 
     </div>
@@ -42,4 +42,6 @@
   </ng-container>
 
   <button (click)="addFieldsDynamic()" [disabled]="availableSearch.length == 1 ">Add</button>
+
+   <button (click)="getSearchModel()">Search</button>
 </div>
