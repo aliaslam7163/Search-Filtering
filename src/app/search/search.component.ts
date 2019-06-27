@@ -102,25 +102,19 @@ export class SearchComponent implements OnInit {
   }
 
   removeSelection(index:number,selection:any){
-   // console.log(this.availableSearch);
     let position = this.dynamicInUse.indexOf(selection);
     if(position > -1){
       var removed = this.dynamicInUse.splice(position,1);
-      //console.log("removed item is" ,removed[0]);
       var _filter = this.searchFields.filter((element) => {
-        //console.log(element);
         return element.label == removed[0].label});
       this.availableSearch.push(_filter[0]);
-      console.log)this.availableSearch);
+      this.dynamicInUse.forEach((element) => {
+        element.availableSelections.push(_filter[0].label);
+      });
     }
-    // let _filter = this.availableSearch.filter((element) => {
-    //   return element.label == selection.label;
-    //   //console.log(_filter);
-    //   this.availableSearch.push(_filter[0]);
-    //   this.dynamicInUse.splice(index,1);
-    //   this.dynamicInUse[this.dynamicInUse.length-1].disabled = !this.dynamicInUse[this.dynamicInUse.length-1].disabled
-    // });
-    // console.log(this.availableSearch)
-     
+    let lastDisabled:boolean = this.dynamicInUse[this.dynamicInUse.length-1].disabled; 
+    if(lastDisabled){
+      this.dynamicInUse[this.dynamicInUse.length-1].disabled = !lastDisabled;
+    }
   }
 }
