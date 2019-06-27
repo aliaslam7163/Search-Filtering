@@ -10,13 +10,13 @@ import { Filter } from '../models/filter.model';
 })
 export class SearchComponent implements OnInit {
   //@ViewChildren() filterSelector2: QueryList;
-  availableSearch:any[] = [
-    {label:'Name',name:'name',type:'TEXT'},
-    {label:'Carrier Code',name:'code',type:'TEXT'},
-    {label:'Defined By',name:'definedby',type:'TEXT'},
-    {label:'Status',name:'status',type:'SELECT',inputModel:['active','inactive']},
-    {label:'Carriers',name:'carriers',type:'MULTI',inputModel:['UPS','DHL','Fedex']}
-  ];
+  // availableSearch:any[] = [
+  //   {label:'Name',name:'name',type:'TEXT'},
+  //   {label:'Carrier Code',name:'code',type:'TEXT'},
+  //   {label:'Defined By',name:'definedby',type:'TEXT'},
+  //   {label:'Status',name:'status',type:'SELECT',inputModel:['active','inactive']},
+  //   {label:'Carriers',name:'carriers',type:'MULTI',inputModel:['UPS','DHL','Fedex']}
+  // ];
   searchFields = this.availableSearch;
   availableFields:any[] = ['Name','Carrier','Status','DefinedBy'];
   filterSelected;
@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     //Lots of processing needs to be done before this
     //Grabbing filter model from server
-    let filter:Partial<Filter> = {
+    let filter = {
       label:this.availableSearch[0].label,
       name:this.availableSearch[0].name,
       type:this.availableSearch[0].type,
