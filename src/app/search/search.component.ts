@@ -18,13 +18,14 @@ export class SearchComponent implements OnInit {
   //   {label:'Carriers',name:'carriers',type:'MULTI',inputModel:['UPS','DHL','Fedex']}
   // ];
 
-  //searchFields = this.availableSearch;
+  searchFields;
   dynamicInUse = new Array();
 
   constructor(private fb:FormBuilder, private dataProvider:FilterService) {}
 
   ngOnInit() {
     this.availableSearch = this.dataProvider.getAvailableSearch();
+    this.searchFields = this.availableSearch;
     //Lots of processing needs to be done before this
     //Grabbing filter model from server
     let filter = {
@@ -125,5 +126,9 @@ export class SearchComponent implements OnInit {
     if(lastDisabled){
       this.dynamicInUse[this.dynamicInUse.length-1].disabled = !lastDisabled;
     }
+  }
+
+  typeAhead(value:any){
+   this.dataProvider.clientTypeAhead(value);
   }
 }

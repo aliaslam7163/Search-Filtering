@@ -20,12 +20,17 @@
              [disabled]="field.disabled"
              [(ngModel)]="field.setValue">
 
+      <input *ngIf="field.type == 'CLIENT'" 
+             [disabled]="field.disabled"
+             [(ngModel)]="field.setValue"
+             (keyup)="typeAhead($event.target.value)">
+
       <select *ngIf="field.type=='SELECT'"
               [disabled]="field.disabled"
               [(ngModel)]="field.setValue">
               
           <option *ngFor="let opts of field.inputModel;let i = index"
-                  >{{opts}}</option>
+                  >{{opts.name}}</option>
       </select>
 
       <select *ngIf="field.type=='MULTI'"
@@ -34,7 +39,7 @@
                multiple>
               
         <option *ngFor="let opts of field.inputModel;let i = index"
-                [selected]="opts[0]" [ngValue]="opts">{{opts}}</option>
+                [selected]="opts.name" [ngValue]="opts.value">{{opts.name}}</option>
       </select>
 
     </div>

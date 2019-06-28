@@ -25,7 +25,7 @@ export class FilterService {
 
     {label:'Date Range',name:'dateRange',type:'SELECT',inputModel:[{name: "All", value: "NONE"},{name: "Today", value: "TODAY"},{name: "Last Two Days", value: "LAST_TWO_DAYS"},{name: "Last Seven Days", value: "LAST_SEVEN_DAYS"}]},
 
-    {label:'Distribution Center',name:'dcNo',type:'SELECT',inputModel:[{name: "All", value: "NONE"},{name: "Today", value: "TODAY"},{name: "Last Two Days", value: "LAST_TWO_DAYS"},{name: "Last Seven Days", value: "LAST_SEVEN_DAYS"}], itemLabel:'dcNoName',maxHeight:'250px'},
+    {label:'Distribution Center',name:'dcNo',type:'SELECT',inputModel:[{oid: "3210007412511210610", dcNo: -23826, name: "JDC_-23826", value: -23826},{oid: "2490006175411050810", dcNo: -3, name: "Seahawks", value: -3},{oid: "6290006175411050810", dcNo: -2, name: "Randomly Created", value: -2},{oid: "1008751540113170101", dcNo: 1, name: "BASIC DC #1 US DEFAULT", value: 1},{oid: "1005675024016080100", dcNo: 2, name: "TEST DC # 2 STANDARD", value: 2},], itemLabel:'dcNoName',maxHeight:'250px'},
 
     {label:'Region',name:'region',type:'TEXT'},
 
@@ -35,5 +35,9 @@ export class FilterService {
   ];
   let _dataCopy = this._currentAvailableFilters;
   return _dataCopy;
+  }
+
+  clientTypeAhead(incomingRequest:any){
+     return console.log(`http://qacombo001.dr1.ei:8121/edmsuiserv/pages/edms-setup.html#!/dc/${incomingRequest}`);
   }
 }
