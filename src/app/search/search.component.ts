@@ -57,7 +57,7 @@ export class SearchComponent implements OnInit {
       console.log(this.availableSearch);
       //console.log(this.dynamicInUse);
       this.dynamicInUse.forEach((element) => element.disabled=true);
-      let filter:Partial<Filter> = {
+      let filter = {
       label:this.availableSearch[0].label,
       name:this.availableSearch[0].name,
       type:this.availableSearch[0].type,
@@ -82,7 +82,7 @@ export class SearchComponent implements OnInit {
     this.dynamicInUse[this.dynamicInUse.length - 1] = this.availableSearch.filter((element) => {
       return element.label == value;
     }).map((obj) => {
-      let filter:Partial<Filter>
+      let filter;
       return filter = {
       label:obj.label,
       name:obj.name,
