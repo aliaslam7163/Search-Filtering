@@ -9,14 +9,13 @@ import { Filter } from '../models/filter.model';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  //@ViewChildren() filterSelector2: QueryList;
-  // availableSearch:any[] = [
-  //   {label:'Name',name:'name',type:'TEXT'},
-  //   {label:'Carrier Code',name:'code',type:'TEXT'},
-  //   {label:'Defined By',name:'definedby',type:'TEXT'},
-  //   {label:'Status',name:'status',type:'SELECT',inputModel:['active','inactive']},
-  //   {label:'Carriers',name:'carriers',type:'MULTI',inputModel:['UPS','DHL','Fedex']}
-  // ];
+  availableSearch:any[] = [
+    {label:'Name',name:'name',type:'TEXT'},
+    {label:'Carrier Code',name:'code',type:'TEXT'},
+    {label:'Defined By',name:'definedby',type:'TEXT'},
+    {label:'Status',name:'status',type:'SELECT',inputModel:['active','inactive']},
+    {label:'Carriers',name:'carriers',type:'MULTI',inputModel:['UPS','DHL','Fedex']}
+  ];
   searchFields = this.availableSearch;
   availableFields:any[] = ['Name','Carrier','Status','DefinedBy'];
   filterSelected;
