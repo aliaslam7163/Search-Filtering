@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import { of } from 'rxjs';
 import { Filter } from '../models/filter.model';
+import { FilterService } from '../services/filter.service';
 
 @Component({
   selector: 'app-search',
@@ -9,21 +10,21 @@ import { Filter } from '../models/filter.model';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  availableSearch:any[] = [
-    {label:'Name',name:'name',type:'TEXT'},
-    {label:'Carrier Code',name:'code',type:'TEXT'},
-    {label:'Defined By',name:'definedby',type:'TEXT'},
-    {label:'Status',name:'status',type:'SELECT',inputModel:['active','inactive']},
-    {label:'Carriers',name:'carriers',type:'MULTI',inputModel:['UPS','DHL','Fedex']}
-  ];
-  searchFields = this.availableSearch;
-  availableFields:any[] = ['Name','Carrier','Status','DefinedBy'];
-  filterSelected;
+   availableSearch=[];// = [
+  //   {label:'Name',name:'name',type:'TEXT'},
+  //   {label:'Carrier Code',name:'code',type:'TEXT'},
+  //   {label:'Defined By',name:'definedby',type:'TEXT'},
+  //   {label:'Status',name:'status',type:'SELECT',inputModel:[{name: "Active", value: "Active"},{name: "Inactive", value: "Inactive"}]},
+  //   {label:'Carriers',name:'carriers',type:'MULTI',inputModel:['UPS','DHL','Fedex']}
+  // ];
+
+  //searchFields = this.availableSearch;
   dynamicInUse = new Array();
 
-  constructor(private fb:FormBuilder) {}
+  constructor(private fb:FormBuilder, private dataProvider:FilterService) {}
 
   ngOnInit() {
+    this.availableSearch = this.dataProvider.getAvailableSearch();
     //Lots of processing needs to be done before this
     //Grabbing filter model from server
     let filter = {
@@ -45,7 +46,7 @@ export class SearchComponent implements OnInit {
   }
 
   addFieldsDynamic(filterUse,value){
-    if(this.availableFields.length > 0){
+    if(this.availableSearch.length > 0){
       console.log(this.dynamicInUse.length,this.availableSearch.length);
         this.availableSearch = this.availableSearch.filter((element) => {
         return this.dynamicInUse.filter((filtersUsed) => {
